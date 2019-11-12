@@ -1,0 +1,404 @@
+SCREEN 12: _FULLSCREEN
+REM "---------------------------GRUND DATA GAME--------------------------------"
+REM "Start - level"
+LEVELNOM% = 1
+REM "Kolichestvo levelov"
+ALLLEVEL% = 3
+REM "Text - print"
+DIM a$(24): DIM b$(24)
+a$(0) = "_": a$(1) = "K": a$(2) = "e": a$(3) = "y": a$(4) = "s": a$(5) = "_": a$(6) = "_": a$(7) = "*": a$(8) = " ": a$(9) = "P": a$(10) = "a": a$(11) = "u": a$(12) = "s": a$(13) = "e": a$(14) = "_": a$(15) = "+": a$(16) = "&": a$(17) = "-": a$(18) = " ": a$(19) = "Z": a$(20) = "o": a$(21) = "o": a$(22) = "m": a$(23) = "_"
+b$(0) = "_": b$(1) = "Z": b$(2) = "o": b$(3) = "o": b$(4) = "m": b$(5) = " ": b$(6) = "S": b$(7) = "c": b$(8) = "r": b$(9) = "e": b$(10) = "e": b$(11) = "n": b$(12) = "_": b$(13) = " ": b$(14) = "": b$(15) = "": b$(16) = "": b$(17) = " ": b$(18) = "_": b$(19) = "2": b$(20) = "0": b$(21) = "1": b$(22) = "3": b$(23) = "_"
+REM "System"
+pi = 3.14159265359
+REM "Keys"
+LF$ = CHR$(0) + CHR$(75): RT$ = CHR$(0) + CHR$(77): UP$ = CHR$(0) + CHR$(72): DN$ = CHR$(0) + CHR$(80): Esc$ = CHR$(27)
+REM "-------------------------LOAD DATA ALL LEVEL-------------------------------"
+0 IF LEVELNOM% = 1 THEN sum = 0: mash% = 13: ww = 640 / (2 * mash%): hh = 480 / (2 * mash%): bras = 38: vrag = 4: GOTO 1
+IF LEVELNOM% = 2 THEN sum = 0: mash% = 13: ww = 640 / (2 * mash%): hh = 480 / (2 * mash%): bras = 38: vrag = 6: GOTO 1
+IF LEVELNOM% = 3 THEN sum = 0: mash% = 13: ww = 640 / (2 * mash%): hh = 480 / (2 * mash%): bras = 21: vrag = 8: GOTO 1
+1 DIM a(2): DIM xb(ww * hh): DIM yb(ww * hh): DIM status(ww * hh): DIM xst(bras): DIM yst(bras): DIM xstgame(bras): DIM ystgame(bras): DIM wst(bras): DIM wbs(bras): DIM hst(bras): DIM hbs(bras): DIM xv(vrag): DIM yv(vrag): DIM xvgame(vrag): DIM yvgame(vrag): DIM mem3(vrag): DIM mem4(vrag)
+IF LEVELNOM% = 1 THEN GOTO 2
+IF LEVELNOM% = 2 THEN GOTO 3
+IF LEVELNOM% = 3 THEN GOTO 4
+REM "-----------------------------DATA LEVEL 1--------------------------------------"
+2 REM "Level - name"
+LEV$ = "01"
+REM "Pacman"
+ug = 0: r = 12: live = 100: stroka = 10: ENDTIME% = 13
+xpgame = 11: ypgame = 8
+a(0) = 20: a(1) = 50
+REM "Eda"
+scorecompleted% = 200: red = 1 / 3
+FOR t1 = 0 TO hh - 1
+    FOR t2 = 0 TO ww - 1
+        status(sum) = 1: sum = sum + 1
+    NEXT t2
+NEXT t1
+REM "Bloki"
+ZVETBLOKGAME% = 13: ZVETBLOKEND% = 11
+xstgame(0) = 1: ystgame(0) = 4: wst(0) = 1: hst(0) = 46
+xstgame(1) = 4: ystgame(1) = 1: wst(1) = 64: hst(1) = 1
+xstgame(2) = 70: ystgame(2) = 4: wst(2) = 1: hst(2) = 46
+xstgame(3) = 4: ystgame(3) = 52: wst(3) = 64: hst(3) = 1
+xstgame(4) = 7: ystgame(4) = 7: wst(4) = 7: hst(4) = 1
+xstgame(5) = 19: ystgame(5) = 7: wst(5) = 10: hst(5) = 1
+xstgame(6) = 34: ystgame(6) = 4: wst(6) = 4: hst(6) = 4
+xstgame(7) = 43: ystgame(7) = 7: wst(7) = 10: hst(7) = 1
+xstgame(8) = 58: ystgame(8) = 7: wst(8) = 7: hst(8) = 1
+xstgame(9) = 7: ystgame(9) = 13: wst(9) = 7: hst(9) = 1
+xstgame(10) = 19: ystgame(10) = 13: wst(10) = 1: hst(10) = 10
+xstgame(11) = 25: ystgame(11) = 13: wst(11) = 22: hst(11) = 1
+xstgame(12) = 34: ystgame(12) = 16: wst(12) = 4: hst(12) = 1
+xstgame(13) = 52: ystgame(13) = 13: wst(13) = 1: hst(13) = 10
+xstgame(14) = 58: ystgame(14) = 13: wst(14) = 7: hst(14) = 1
+xstgame(15) = 4: ystgame(15) = 19: wst(15) = 10: hst(15) = 10
+xstgame(16) = 22: ystgame(16) = 19: wst(16) = 4: hst(16) = 1
+xstgame(17) = 31: ystgame(17) = 22: wst(17) = 10: hst(17) = 1
+xstgame(18) = 46: ystgame(18) = 19: wst(18) = 4: hst(18) = 1
+xstgame(19) = 58: ystgame(19) = 19: wst(19) = 10: hst(19) = 10
+xstgame(20) = 19: ystgame(20) = 28: wst(20) = 1: hst(20) = 1
+xstgame(21) = 25: ystgame(21) = 28: wst(21) = 22: hst(21) = 1
+xstgame(22) = 52: ystgame(22) = 28: wst(22) = 1: hst(22) = 1
+xstgame(23) = 7: ystgame(23) = 34: wst(23) = 7: hst(23) = 1
+xstgame(24) = 19: ystgame(24) = 34: wst(24) = 10: hst(24) = 1
+xstgame(25) = 34: ystgame(25) = 31: wst(25) = 4: hst(25) = 4
+xstgame(26) = 43: ystgame(26) = 34: wst(26) = 10: hst(26) = 1
+xstgame(27) = 58: ystgame(27) = 34: wst(27) = 7: hst(27) = 1
+xstgame(28) = 10: ystgame(28) = 37: wst(28) = 4: hst(28) = 4
+xstgame(29) = 58: ystgame(29) = 37: wst(29) = 4: hst(29) = 4
+xstgame(30) = 4: ystgame(30) = 40: wst(30) = 1: hst(30) = 1
+xstgame(31) = 19: ystgame(31) = 40: wst(31) = 1: hst(31) = 4
+xstgame(32) = 25: ystgame(32) = 40: wst(32) = 22: hst(32) = 1
+xstgame(33) = 52: ystgame(33) = 40: wst(33) = 1: hst(33) = 4
+xstgame(34) = 67: ystgame(34) = 40: wst(34) = 1: hst(34) = 1
+xstgame(35) = 7: ystgame(35) = 46: wst(35) = 22: hst(35) = 1
+xstgame(36) = 34: ystgame(36) = 43: wst(36) = 4: hst(36) = 4
+xstgame(37) = 43: ystgame(37) = 46: wst(37) = 22: hst(37) = 1
+REM "Vragi"
+poss = 1: timerr = 0
+xvgame(0) = 10: yvgame(0) = 6
+xvgame(1) = 11: yvgame(1) = 6
+xvgame(2) = 12: yvgame(2) = 6
+xvgame(3) = 13: yvgame(3) = 6
+REM "Heart"
+VerojatnostPojavlenija% = 2
+xhrt% = 999: yhrt% = 999
+REM "Level start"
+GOTO 99
+REM "-----------------------------DATA LEVEL 2-------------------------------------"
+3 REM "Level - name"
+LEV$ = "02"
+REM "Pacman"
+ug = 0: r = 12: live = 100: stroka = 10: ENDTIME% = 13
+xpgame = 11: ypgame = 7
+a(0) = 20: a(1) = 50
+REM "Eda"
+scorecompleted% = 196: red = 1 / 3
+FOR t1 = 0 TO hh - 1
+    FOR t2 = 0 TO ww - 1
+        status(sum) = 1: sum = sum + 1
+    NEXT t2
+NEXT t1
+REM "Bloki"
+ZVETBLOKGAME% = 1: ZVETBLOKEND% = 12
+xstgame(0) = 1: ystgame(0) = 4: wst(0) = 1: hst(0) = 46
+xstgame(1) = 4: ystgame(1) = 1: wst(1) = 64: hst(1) = 1
+xstgame(2) = 70: ystgame(2) = 4: wst(2) = 1: hst(2) = 46
+xstgame(3) = 4: ystgame(3) = 52: wst(3) = 64: hst(3) = 1
+xstgame(4) = 7: ystgame(4) = 7: wst(4) = 4: hst(4) = 1
+xstgame(5) = 16: ystgame(5) = 4: wst(5) = 1: hst(5) = 4
+xstgame(6) = 22: ystgame(6) = 7: wst(6) = 28: hst(6) = 1
+xstgame(7) = 55: ystgame(7) = 4: wst(7) = 1: hst(7) = 4
+xstgame(8) = 61: ystgame(8) = 7: wst(8) = 4: hst(8) = 1
+xstgame(9) = 4: ystgame(9) = 13: wst(9) = 1: hst(9) = 22
+xstgame(10) = 10: ystgame(10) = 13: wst(10) = 1: hst(10) = 4
+xstgame(11) = 10: ystgame(11) = 19: wst(11) = 7: hst(11) = 1
+xstgame(12) = 16: ystgame(12) = 13: wst(12) = 13: hst(12) = 1
+xstgame(13) = 34: ystgame(13) = 13: wst(13) = 4: hst(13) = 4
+xstgame(14) = 22: ystgame(14) = 19: wst(14) = 28: hst(14) = 1
+xstgame(15) = 43: ystgame(15) = 13: wst(15) = 13: hst(15) = 1
+xstgame(16) = 61: ystgame(16) = 13: wst(16) = 1: hst(16) = 4
+xstgame(17) = 55: ystgame(17) = 19: wst(17) = 7: hst(17) = 1
+xstgame(18) = 67: ystgame(18) = 13: wst(18) = 1: hst(18) = 22
+xstgame(19) = 10: ystgame(19) = 25: wst(19) = 7: hst(19) = 1
+xstgame(20) = 10: ystgame(20) = 28: wst(20) = 1: hst(20) = 1
+xstgame(21) = 22: ystgame(21) = 25: wst(21) = 28: hst(21) = 4
+xstgame(22) = 55: ystgame(22) = 25: wst(22) = 7: hst(22) = 1
+xstgame(23) = 61: ystgame(23) = 28: wst(23) = 1: hst(23) = 1
+xstgame(24) = 10: ystgame(24) = 34: wst(24) = 19: hst(24) = 1
+xstgame(25) = 16: ystgame(25) = 31: wst(25) = 1: hst(25) = 1
+xstgame(26) = 34: ystgame(26) = 34: wst(26) = 4: hst(26) = 4
+xstgame(27) = 43: ystgame(27) = 34: wst(27) = 19: hst(27) = 1
+xstgame(28) = 55: ystgame(28) = 31: wst(28) = 1: hst(28) = 1
+xstgame(29) = 7: ystgame(29) = 40: wst(29) = 4: hst(29) = 7
+xstgame(30) = 16: ystgame(30) = 40: wst(30) = 7: hst(30) = 1
+xstgame(31) = 16: ystgame(31) = 43: wst(31) = 1: hst(31) = 4
+xstgame(32) = 28: ystgame(32) = 40: wst(32) = 16: hst(32) = 1
+xstgame(33) = 34: ystgame(33) = 43: wst(33) = 4: hst(33) = 1
+xstgame(34) = 22: ystgame(34) = 46: wst(34) = 28: hst(34) = 1
+xstgame(35) = 49: ystgame(35) = 40: wst(35) = 7: hst(35) = 1
+xstgame(36) = 55: ystgame(36) = 43: wst(36) = 1: hst(36) = 4
+xstgame(37) = 61: ystgame(37) = 40: wst(37) = 4: hst(37) = 7
+REM "Vragi"
+poss = 1: timerr = 0
+xvgame(0) = 8: yvgame(0) = 5
+xvgame(1) = 9: yvgame(1) = 5
+xvgame(2) = 14: yvgame(2) = 5
+xvgame(3) = 15: yvgame(3) = 5
+xvgame(4) = 11: yvgame(4) = 10
+xvgame(5) = 12: yvgame(5) = 10
+REM "Heart"
+VerojatnostPojavlenija% = 3
+xhrt% = 999: yhrt% = 999
+REM "Level start"
+GOTO 99
+REM "-----------------------------DATA LEVEL 3--------------------------------------"
+4 REM "Level - name"
+LEV$ = "03"
+REM "Pacman"
+ug = 0: r = 12: live = 100: stroka = 10: ENDTIME% = 13
+xpgame = 11: ypgame = 12
+a(0) = 20: a(1) = 50
+REM "Eda"
+scorecompleted% = 208: red = 1 / 3
+FOR t1 = 0 TO hh - 1
+    FOR t2 = 0 TO ww - 1
+        status(sum) = 1: sum = sum + 1
+    NEXT t2
+NEXT t1
+REM "Bloki"
+ZVETBLOKGAME% = 14: ZVETBLOKEND% = 2
+xstgame(0) = 1: ystgame(0) = 4: wst(0) = 1: hst(0) = 46
+xstgame(1) = 4: ystgame(1) = 1: wst(1) = 64: hst(1) = 1
+xstgame(2) = 70: ystgame(2) = 4: wst(2) = 1: hst(2) = 46
+xstgame(3) = 4: ystgame(3) = 52: wst(3) = 64: hst(3) = 1
+xstgame(4) = 7: ystgame(4) = 7: wst(4) = 1: hst(4) = 40
+xstgame(5) = 10: ystgame(5) = 7: wst(5) = 22: hst(5) = 1
+xstgame(6) = 40: ystgame(6) = 7: wst(6) = 22: hst(6) = 1
+xstgame(7) = 64: ystgame(7) = 7: wst(7) = 1: hst(7) = 40
+xstgame(8) = 13: ystgame(8) = 13: wst(8) = 46: hst(8) = 1
+xstgame(9) = 13: ystgame(9) = 19: wst(9) = 1: hst(9) = 16
+xstgame(10) = 19: ystgame(10) = 19: wst(10) = 34: hst(10) = 1
+xstgame(11) = 58: ystgame(11) = 19: wst(11) = 1: hst(11) = 16
+xstgame(12) = 19: ystgame(12) = 25: wst(12) = 1: hst(12) = 4
+xstgame(13) = 25: ystgame(13) = 25: wst(13) = 4: hst(13) = 4
+xstgame(14) = 34: ystgame(14) = 25: wst(14) = 4: hst(14) = 4
+xstgame(15) = 43: ystgame(15) = 25: wst(15) = 4: hst(15) = 4
+xstgame(16) = 52: ystgame(16) = 25: wst(16) = 1: hst(16) = 4
+xstgame(17) = 19: ystgame(17) = 34: wst(17) = 34: hst(17) = 1
+xstgame(18) = 13: ystgame(18) = 40: wst(18) = 46: hst(18) = 1
+xstgame(19) = 10: ystgame(19) = 46: wst(19) = 22: hst(19) = 1
+xstgame(20) = 40: ystgame(20) = 46: wst(20) = 22: hst(20) = 1
+REM "Vragi"
+poss = 1: timerr = 0
+xvgame(0) = 1: yvgame(0) = 1
+xvgame(1) = 22: yvgame(1) = 1
+xvgame(2) = 1: yvgame(2) = 16
+xvgame(3) = 22: yvgame(3) = 16
+xvgame(4) = 11: yvgame(4) = 7
+xvgame(5) = 12: yvgame(5) = 7
+xvgame(6) = 11: yvgame(6) = 10
+xvgame(7) = 12: yvgame(7) = 10
+REM "Heart"
+VerojatnostPojavlenija% = 1
+xhrt% = 999: yhrt% = 999
+REM "Level start"
+GOTO 99
+REM "--------------------------GAME-----------------------------------------"
+99 score = 0: ZVETBLOK% = ZVETBLOKGAME%: READY = 1
+100 IF live <= 0 THEN ug = mem0: xpgame = mem1: ypgame = mem2
+zoom% = (r / 3) ^ 2
+IF zoom% <= 0 THEN r = mem5: zoom% = (r / 3) ^ 2
+ZUM$ = STR$(zoom%): DLINA% = LEN(ZUM$)
+IF DLINA% = 2 THEN ZS1$ = "0": ZS2$ = "0": ZS3$ = MID$(ZUM$, 2, 1)
+IF DLINA% = 3 THEN ZS1$ = "0": ZS2$ = MID$(ZUM$, 2, 1): ZS3$ = MID$(ZUM$, 3, 1)
+IF DLINA% = 4 THEN ZS1$ = MID$(ZUM$, 2, 1): ZS2$ = MID$(ZUM$, 3, 1): ZS3$ = MID$(ZUM$, 4, 1)
+rb = r * red: sum = 0
+FOR t1 = 0 TO hh - 1
+    FOR t2 = 0 TO ww - 1
+        xb(sum) = (640 / 2) - (ww * r) + r + (2 * r * t2): yb(sum) = (480 / 2) - (hh * r) + r + (2 * r * t1): sum = sum + 1
+    NEXT t2
+NEXT t1
+FOR t = 0 TO bras - 1
+    xst(t) = (640 / 2) - (ww * r) + (2 * r * xstgame(t)) / 3: yst(t) = (480 / 2) - (hh * r) + (2 * r * ystgame(t)) / 3: wbs(t) = (wst(t) * 2 * r) / 3: hbs(t) = (hst(t) * 2 * r) / 3
+NEXT t
+xp = (640 / 2) - (ww * r) + r + (2 * r * xpgame): yp = (480 / 2) - (hh * r) + r + (2 * r * ypgame)
+200 FOR t = 0 TO vrag - 1
+    xv(t) = (640 / 2) - (ww * r) + r + (2 * r * xvgame(t)): yv(t) = (480 / 2) - (hh * r) + r + (2 * r * yvgame(t))
+    FOR t1 = 0 TO bras - 1
+        u1 = 0: u2 = 0: u3 = 0: u4 = 0
+        IF (xv(t) - r) > xst(t1) AND (xv(t) - r) <= xst(t1) + wbs(t1) THEN u1 = 1
+        IF xst(t1) >= (xv(t) - r) AND xst(t1) < (xv(t) - r) + r * 2 THEN u2 = 1
+        IF (yv(t) - r) > yst(t1) AND (yv(t) - r) <= yst(t1) + hbs(t1) THEN u3 = 1
+        IF yst(t1) >= (yv(t) - r) AND yst(t1) < (yv(t) - r) + r * 2 THEN u4 = 1
+        IF u1 + u2 + u3 + u4 = 2 THEN xvgame(t) = mem3(t): yvgame(t) = mem4(t)
+    NEXT t1
+    xv(t) = (640 / 2) - (ww * r) + r + (2 * r * xvgame(t)): yv(t) = (480 / 2) - (hh * r) + r + (2 * r * yvgame(t))
+NEXT t
+IF AKT = 0 THEN GOTO 300
+FOR t = 0 TO bras - 1
+    u1 = 0: u2 = 0: u3 = 0: u4 = 0
+    IF (xp - r) > xst(t) AND (xp - r) <= xst(t) + wbs(t) THEN u1 = 1
+    IF xst(t) >= (xp - r) AND xst(t) < (xp - r) + r * 2 THEN u2 = 1
+    IF (yp - r) > yst(t) AND (yp - r) <= yst(t) + hbs(t) THEN u3 = 1
+    IF yst(t) >= (yp - r) AND yst(t) < (yp - r) + r * 2 THEN u4 = 1
+    IF u1 + u2 + u3 + u4 = 2 THEN xpgame = mem1: ypgame = mem2
+NEXT t
+xp = (640 / 2) - (ww * r) + r + (2 * r * xpgame): yp = (480 / 2) - (hh * r) + r + (2 * r * ypgame)
+300 FOR t = 0 TO ww * hh - 1
+    u1 = 0: u2 = 0: u3 = 0: u4 = 0
+    IF (xp - r) > (xb(t) - rb) AND (xp - r) <= (xb(t) - rb) + rb * 2 THEN u1 = 1
+    IF (xb(t) - rb) >= (xp - r) AND (xb(t) - rb) < (xp - r) + r * 2 THEN u2 = 1
+    IF (yp - r) > (yb(t) - rb) AND (yp - r) <= (yb(t) - rb) + rb * 2 THEN u3 = 1
+    IF (yb(t) - rb) >= (yp - r) AND (yb(t) - rb) < (yp - r) + r * 2 THEN u4 = 1
+    IF u1 + u2 + u3 + u4 = 2 AND status(t) = 1 THEN status(t) = 0: score = score + 1
+NEXT t
+u1 = 0: u2 = 0: u3 = 0: u4 = 0
+IF (xh - rb) > (xp - r) AND (xh - rb) <= (xp - r) + r * 2 THEN u1 = 1
+IF (xp - r) >= (xh - rb) AND (xp - r) < (xh - rb) + rb * 2 THEN u2 = 1
+IF (yh - rb) > (yp - r) AND (yh - rb) <= (yp - r) + r * 2 THEN u3 = 1
+IF (yp - r) >= (yh - rb) AND (yp - r) < (yh - rb) + rb * 2 THEN u4 = 1
+IF u1 + u2 + u3 + u4 = 2 THEN live = live + 10: xhrt% = 999: yhrt% = 999
+IF live >= 100 THEN live = 100
+FOR t = 0 TO vrag - 1
+    u1 = 0: u2 = 0: u3 = 0: u4 = 0
+    IF (xv(t) - r) > (xp - r) AND (xv(t) - r) <= (xp - r) + r * 2 THEN u1 = 1
+    IF (xp - r) >= (xv(t) - r) AND (xp - r) < (xv(t) - r) + r * 2 THEN u2 = 1
+    IF (yv(t) - r) > (yp - r) AND (yv(t) - r) <= (yp - r) + r * 2 THEN u3 = 1
+    IF (yp - r) >= (yv(t) - r) AND (yp - r) < (yv(t) - r) + r * 2 THEN u4 = 1
+    IF u1 + u2 + u3 + u4 = 2 THEN live = live - 10: ataka = 1
+NEXT t
+IF live <= 0 THEN live = 0: timerr = timerr + 1
+IF timerr > ENDTIME% THEN SLEEP 1: ERASE a: ERASE xb: ERASE yb: ERASE status: ERASE xst: ERASE yst: ERASE xstgame: ERASE ystgame: ERASE wst: ERASE wbs: ERASE hst: ERASE hbs: ERASE xv: ERASE yv: ERASE xvgame: ERASE yvgame: ERASE mem3: ERASE mem4: GOTO 0
+pr$ = "": liv$ = "": probel = stroka - (live / 10)
+FOR t = 0 TO probel - 1
+    pr$ = pr$ + " "
+NEXT t
+IF timerr <> 0 THEN sostojanie$ = "         "
+IF timerr <> 0 AND poss = 0.7 THEN poss = 1: ZVETBLOK% = ZVETBLOKGAME%: GOTO 400
+IF timerr <> 0 AND poss = 1 THEN poss = 0.7: ZVETBLOK% = ZVETBLOKEND%: GOTO 400
+FOR t = 0 TO (live / 10) - 1
+    liv$ = liv$ + "Y"
+NEXT t
+sostojanie$ = pr$ + liv$
+400 CLS
+FOR t = 0 TO ww * hh - 1
+    CIRCLE (xb(t), yb(t)), rb, 15 * status(t)
+NEXT
+PAINT (xb(0), yb(0)), 10, 15: PAINT (xb(ww * (hh - 1) + 1), yb(ww * (hh - 1) + 1)), 10, 15: PAINT (xb(ww * (hh - 2) + 3), yb(ww * (hh - 2) + 3)), 10, 15: PAINT (xb(ww - 2), yb(hh - 2)), 10, 15
+ver% = RND * 100
+IF ver% > (100 - VerojatnostPojavlenija%) THEN xhrt% = RND * (ww - 2): yhrt% = RND * (hh - 2)
+xh = (640 / 2) - (ww * r) + r + (2 * r * xhrt%): yh = (480 / 2) - (hh * r) + r + (2 * r * yhrt%)
+LINE (xh - rb - 1, yh - rb - 1)-(xh + rb + 1, yh + rb + 1), 0, BF
+CIRCLE (xh - (rb / 2), yh - (rb / 2)), rb / 2, 6, 0, pi
+CIRCLE (xh + (rb / 2), yh - (rb / 2)), rb / 2, 6, 0, pi
+LINE (xh - rb, yh - (rb / 2))-(xh, yh + rb), 6
+LINE (xh + rb, yh - (rb / 2))-(xh, yh + rb), 6: PAINT (xh, yh + 1), 12, 6
+FOR t = 0 TO vrag - 1
+    LINE (xv(t) - r, yv(t) - r)-(xv(t) + r, yv(t) + r), 0, BF
+    CIRCLE (xv(t), yv(t)), r, 4
+    CIRCLE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847)), (poss * (r / 2)), 12, -4.22, -4.22
+    CIRCLE (xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436)), (poss * (r / 2)), 12, -5.148, -5.148
+    CIRCLE (xv(t) - ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 5, 4: CIRCLE (xv(t) - ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 10, 4
+    CIRCLE (xv(t) + ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 5, 4: CIRCLE (xv(t) + ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 10, 4
+    CIRCLE (xv(t) - (r / 2), yv(t) - (r / 3)), r / 3.75, 15, , , 0.5: PAINT (xv(t) - (r / 2), yv(t) - (r / 3)), RND * 14, 15
+    CIRCLE (xv(t) + (r / 2), yv(t) - (r / 3)), r / 3.75, 15, , , 0.5: PAINT (xv(t) + (r / 2), yv(t) - (r / 3)), RND * 14, 15
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847))-(xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436)), 4
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847))-((xv(t) + (r - (poss * (r / 2))) * SIN(5.847)) - (r / 10), (yv(t) + (r - (poss * (r / 2))) * COS(5.847)) - (r / 10)), 12
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436))-((xv(t) + (r - (poss * (r / 2))) * SIN(0.436)) + (r / 10), (yv(t) + (r - (poss * (r / 2))) * COS(0.436)) - (r / 10)), 12
+NEXT t
+FOR t = 0 TO bras - 1
+    LINE (xst(t), yst(t))-(xst(t) + wbs(t), yst(t) + hbs(t)), ZVETBLOK%, B: LINE (xst(t) + 1, yst(t) + 1)-(xst(t) + wbs(t) - 1, yst(t) + hbs(t) - 1), 0, BF
+NEXT t
+k = 1: l = 0
+IF ug = 0 THEN k = 0: l = 1
+CIRCLE (xp, yp), r, 6, -(pi * (ug + a(0)) / 180), -(pi * (ug - a(0)) / 180) * k - 5.93 * l
+IF ataka = 1 THEN LINE (xp - r, yp - r)-(xp + r, yp + r), 14, BF
+COLOR 7: LOCATE 1, 1: PRINT "                                                                                "
+LOCATE 1, 1: PRINT "Score:  " + STR$(score) + " /" + STR$(scorecompleted%)
+LOCATE 1, 54: PRINT "LIVES:  " + STR$(live) + "%-|" + "          " + " |": COLOR 6: LOCATE 1, 69: PRINT sostojanie$
+COLOR 10: LOCATE 3, 1: PRINT " |": LOCATE 3, 78: PRINT "|  ": LOCATE 2, 1: PRINT "  ": LOCATE 2, 78: PRINT "   "
+COLOR 9: LOCATE 1, 32: PRINT "\\ " + "LEVEL - " + LEV$ + " //"
+FOR t = 4 TO 28
+    COLOR 10: LOCATE t, 1: PRINT " |": LOCATE t, 78: PRINT "|  ": COLOR 8: LOCATE t, 1: PRINT a$(t - 4): LOCATE t, 79: PRINT b$(t - 4)
+NEXT t
+COLOR 11: LOCATE 18, 79: PRINT ZS1$: LOCATE 19, 79: PRINT ZS2$: LOCATE 20, 79: PRINT ZS3$: LOCATE 21, 79: PRINT "%": _DISPLAY
+_DELAY 0.15: CLS
+FOR t = 0 TO ww * hh - 1
+    CIRCLE (xb(t), yb(t)), rb, 15 * status(t)
+NEXT
+PAINT (xb(0), yb(0)), 10, 15: PAINT (xb(ww * (hh - 1) + 1), yb(ww * (hh - 1) + 1)), 10, 15: PAINT (xb(ww * (hh - 2) + 3), yb(ww * (hh - 2) + 3)), 10, 15: PAINT (xb(ww - 2), yb(hh - 2)), 10, 15
+FOR t = 0 TO vrag - 1
+    LINE (xv(t) - r, yv(t) - r)-(xv(t) + r, yv(t) + r), 0, BF
+    CIRCLE (xv(t), yv(t)), r, 4
+    CIRCLE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847)), (poss * (r / 2)), 12, -4.22, -4.22
+    CIRCLE (xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436)), (poss * (r / 2)), 12, -5.148, -5.148
+    CIRCLE (xv(t) - ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 5, 4: CIRCLE (xv(t) - ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 10, 4
+    CIRCLE (xv(t) + ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 5, 4: CIRCLE (xv(t) + ((r / 2) + (r / 15)), yv(t) + (r / 5)), r / 10, 4
+    CIRCLE (xv(t) - (r / 2), yv(t) - (r / 3)), r / 3.75, 15, , , 0.5: PAINT (xv(t) - (r / 2), yv(t) - (r / 3)), RND * 14, 15
+    CIRCLE (xv(t) + (r / 2), yv(t) - (r / 3)), r / 3.75, 15, , , 0.5: PAINT (xv(t) + (r / 2), yv(t) - (r / 3)), RND * 14, 15
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847))-(xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436)), 4
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(5.847), yv(t) + (r - (poss * (r / 2))) * COS(5.847))-((xv(t) + (r - (poss * (r / 2))) * SIN(5.847)) - (r / 10), (yv(t) + (r - (poss * (r / 2))) * COS(5.847)) - (r / 10)), 12
+    LINE (xv(t) + (r - (poss * (r / 2))) * SIN(0.436), yv(t) + (r - (poss * (r / 2))) * COS(0.436))-((xv(t) + (r - (poss * (r / 2))) * SIN(0.436)) + (r / 10), (yv(t) + (r - (poss * (r / 2))) * COS(0.436)) - (r / 10)), 12
+NEXT t
+FOR t = 0 TO bras - 1
+    LINE (xst(t), yst(t))-(xst(t) + wbs(t), yst(t) + hbs(t)), ZVETBLOK%, B: LINE (xst(t) + 1, yst(t) + 1)-(xst(t) + wbs(t) - 1, yst(t) + hbs(t) - 1), 0, BF
+NEXT t
+CIRCLE (xp, yp), r, 6, -(pi * (ug + a(1)) / 180), -(pi * (ug - a(1)) / 180) * k - 5.41 * l
+IF ataka = 1 THEN LINE (xp - r, yp - r)-(xp + r, yp + r), 12, BF
+IF live <= 0 THEN LOCATE 15, 35: COLOR 4: PRINT "GAME OVER"
+COLOR 7: LOCATE 1, 1: PRINT "                                                                                "
+LOCATE 1, 1: PRINT "Score:  " + STR$(score) + " /" + STR$(scorecompleted%)
+LOCATE 1, 54: PRINT "LIVES:  " + STR$(live) + "%-|" + "          " + " |": COLOR 6: LOCATE 1, 69: PRINT sostojanie$
+COLOR 10: LOCATE 3, 1: PRINT " |": LOCATE 3, 78: PRINT "|  ": LOCATE 2, 1: PRINT "  ": LOCATE 2, 78: PRINT "   "
+COLOR 9: LOCATE 1, 32: PRINT "\\ " + "LEVEL - " + LEV$ + " //"
+FOR t = 4 TO 28
+    COLOR 10: LOCATE t, 1: PRINT " |": LOCATE t, 78: PRINT "|  ": COLOR 8: LOCATE t, 1: PRINT a$(t - 4): LOCATE t, 79: PRINT b$(t - 4)
+NEXT t
+COLOR 11: LOCATE 18, 79: PRINT ZS1$: LOCATE 19, 79: PRINT ZS2$: LOCATE 20, 79: PRINT ZS3$: LOCATE 21, 79: PRINT "%": _DISPLAY
+_DELAY 0.15
+IF READY = 1 THEN LOCATE 15, 35: PRINT "GET READY!": _DISPLAY: SLEEP 3: LOCATE 15, 35: PRINT " <<<GO>>> ": _DISPLAY: SLEEP 2
+FOR t = 0 TO vrag - 1
+    mem3(t) = xvgame(t): mem4(t) = yvgame(t)
+NEXT t
+IF timerr <> 0 THEN GOTO 1500
+FOR t = 0 TO vrag - 1
+    500 n% = RND * 13
+    IF n% <= 3 THEN GOTO 500
+    IF n% < 6 AND n% > 3 THEN GOTO 1400
+    IF n% = 6 THEN GOTO 600
+    IF n% = 7 THEN GOTO 700
+    IF n% = 8 THEN GOTO 800
+    IF n% = 9 THEN GOTO 900
+    IF n% = 10 THEN GOTO 1000
+    IF n% = 11 THEN GOTO 1100
+    IF n% = 12 THEN GOTO 1200
+    IF n% = 13 THEN GOTO 1300
+    600 IF xvgame(t) > xpgame THEN xvgame(t) = xvgame(t) - 1: GOTO 1400
+    700 IF xvgame(t) < xpgame THEN xvgame(t) = xvgame(t) + 1: GOTO 1400
+    800 IF yvgame(t) > ypgame THEN yvgame(t) = yvgame(t) - 1: GOTO 1400
+    900 IF yvgame(t) < ypgame THEN yvgame(t) = yvgame(t) + 1: GOTO 1400
+    1000 xvgame(t) = xvgame(t) - 1: GOTO 1400
+    1100 xvgame(t) = xvgame(t) + 1: GOTO 1400
+    1200 yvgame(t) = yvgame(t) - 1: GOTO 1400
+    1300 yvgame(t) = yvgame(t) + 1: GOTO 1400
+1400 NEXT t
+IF score >= scorecompleted% THEN LOCATE 15, 32: PRINT "LEVEL COMPLETED!": _DISPLAY: SLEEP 3: LEVELNOM% = LEVELNOM% + 1: ERASE a: ERASE xb: ERASE yb: ERASE status: ERASE xst: ERASE yst: ERASE xstgame: ERASE ystgame: ERASE wst: ERASE wbs: ERASE hst: ERASE hbs: ERASE xv: ERASE yv: ERASE xvgame: ERASE yvgame: ERASE mem3: ERASE mem4: GOTOLEVEL = 1
+IF LEVELNOM% > ALLLEVEL% AND GOTOLEVEL = 1 THEN END
+IF GOTOLEVEL = 1 THEN GOTOLEVEL = 0: GOTO 0
+1500 s$ = INKEY$: mem0 = ug: mem1 = xpgame: mem2 = ypgame: AKT = 1: p$ = p$ + s$: ataka = 0: mem5 = r: READY = 0
+IF s$ = "/" THEN p$ = ""
+IF p$ = "mr gifo" THEN END
+SELECT CASE s$
+    CASE UP$: ypgame = ypgame - 1: ug = 90: GOTO 100
+    CASE DN$: ypgame = ypgame + 1: ug = 270: GOTO 100
+    CASE LF$: xpgame = xpgame - 1: ug = 180: GOTO 100
+    CASE RT$: xpgame = xpgame + 1: ug = 0: GOTO 100
+    CASE Esc$: END
+    CASE "+": r = r + 1: GOTO 100
+    CASE "-": r = r - 1: GOTO 100
+    CASE "*": GOTO 2000
+    CASE ELSE: AKT = 0: GOTO 100
+END SELECT
+2000 LOCATE 15, 38: PRINT "PAUSE": _DISPLAY: SLEEP
+GOTO 1500
